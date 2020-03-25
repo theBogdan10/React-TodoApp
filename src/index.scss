@@ -14,13 +14,52 @@ code {
     monospace;
 }
 
-.todo{
+.todo {
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  strong{
+  strong {
     margin-right: 1rem;
   }
 
+}
+
+.alert-enter {
+  opacity: 0;
+
+}
+
+.alert-enter-active {
+  transition: opacity 500ms ease-out;
+  opacity: 1;
+}
+
+.alert-exit-active {
+  transition: opacity 350ms ease-out;
+  opacity: 0;
+}
+
+.todo-exit-active {
+  animation: todo 800ms ease-out forwards;
+}
+
+.todo-enter-active {
+  animation: todo 800ms ease-in alternate-reverse;
+}
+
+@keyframes todo {
+  0% {
+    transform: translateX(0)
+  }
+
+  30% {
+    opacity: 0.7;
+    transform: translateX(30px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
 }

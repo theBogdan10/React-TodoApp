@@ -1,22 +1,25 @@
 import React from "react";
+import {TransitionGroup,CSSTransition} from 'react-transition-group';
 
-const Todos = ({todos}) => {
-  return (
-   <ul className='list-group'>
+const Todos = ({todos, onDelete}) => (
+   <TransitionGroup component='ul' className='list-group'>
        {todos.map(el => (
-        <li className='list-group-item todo'
-            key={el.id}    
-       >
-           
-           <div>
+        <CSSTransition
+            key={el.id} 
+            classNames={'todo'}
+            timeout={800}
+            >
+            <li className='list-group-item todo'>   
+            <div>
                 <strong>{el.title}</strong>
-                <small>{new Date().toLocaleDateString()}</small>
-           </div>
-           <button type="button" className="btn btn-outline-danger btn-sm ">&times;</button>
-       </li>
+                <small>{el.date}</small>
+            </div>
+            <button type="button" className="btn btn-outline-danger btn-sm " 
+                        onClick={() => onDelete(el.id)}>&times;</button>
+        </li>
+       </CSSTransition>
        ))}
-   </ul>
-  );
-};
+   </TransitionGroup>
+);
 
 export default Todos;
